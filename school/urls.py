@@ -4,6 +4,8 @@ from .views import StudentsListView, StudentDetailView, GradeListView, GradeDeta
     ParentDetailView, OperatorListView, OperatorDetailView, PaymentsListView, PaymentDetailView, TransferListView, \
     TransferDetailView
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.views import TokenRefreshView
+
 
 urlpatterns = [
     path('students/', StudentsListView.as_view(), name='student_list'),
@@ -18,5 +20,6 @@ urlpatterns = [
     path('payment/<int:id>', PaymentDetailView.as_view(), name='payment_detail'),
     path('transfers/', TransferListView.as_view(), name='transfer_list'),
     path('transfer/<int:id>/', TransferDetailView.as_view(), name='transfer_detail'),
-    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair')
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh')
 ]
