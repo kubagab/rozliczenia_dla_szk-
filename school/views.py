@@ -10,79 +10,95 @@ from .serializers import StudentsSerializer, GradeSerializer, ParentsSerializer,
     TransferSerializer
 
 
-@authentication_classes([JWTAuthentication])
+# @authentication_classes([JWTAuthentication])
 class StudentsListView(generics.ListCreateAPIView):
     queryset = Students.objects.all()
     serializer_class = StudentsSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
-@authentication_classes([JWTAuthentication])
+
 class StudentDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Students.objects.all()
     serializer_class = StudentsSerializer
     lookup_field = 'id'
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
-@authentication_classes([JWTAuthentication])
+
 class GradeListView(generics.ListCreateAPIView):
     queryset = Grade.objects.all()
     serializer_class = GradeSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
-@authentication_classes([JWTAuthentication])
 class GradeDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Grade.objects.all()
     serializer_class = GradeSerializer
     lookup_field = 'id'
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
-@authentication_classes([JWTAuthentication])
+
 class ParentsListView(generics.ListCreateAPIView):
     queryset = Parents.objects.all()
     serializer_class = ParentsSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
-@authentication_classes([JWTAuthentication])
 class ParentDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Parents.objects.all()
     serializer_class = ParentsSerializer
     lookup_field = 'id'
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
-@authentication_classes([JWTAuthentication])
 class OperatorListView(generics.ListCreateAPIView):
     queryset = Operators.objects.all()
     serializer_class = OperatorSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
-@authentication_classes([JWTAuthentication])
 class OperatorDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Operators.objects.all()
     serializer_class = OperatorSerializer
     lookup_field = 'id'
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
-@authentication_classes([JWTAuthentication])
 class PaymentsListView(generics.ListCreateAPIView):
     queryset = Payments.objects.all()
     serializer_class = PaymentsSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
-@authentication_classes([JWTAuthentication])
 class PaymentDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Payments.objects.all()
     serializer_class = PaymentsSerializer
     lookup_field = 'id'
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
-@authentication_classes([JWTAuthentication])
 class TransferListView(generics.ListCreateAPIView):
     queryset = Transfer.objects.all()
     serializer_class = TransferSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
-@authentication_classes([JWTAuthentication])
 class TransferDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Transfer.objects.all()
     serializer_class = TransferSerializer
     lookup_field = 'id'
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
