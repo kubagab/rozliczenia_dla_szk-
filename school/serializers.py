@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import Students, Grade, Parents, Operators, Payments, Transfer
 
@@ -22,7 +23,7 @@ class ParentsSerializer(serializers.ModelSerializer):
 
 class OperatorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Operators
+        model = User
         fields = '__all__'
 
 
