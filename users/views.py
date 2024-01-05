@@ -37,21 +37,23 @@ class LoginAPI(APIView):
         username = request.data.get('username')
         password = request.data.get('password')
 
-        user = authenticate(username=username, password=password)
+        user = authenticate(request, username=username, password=password)
 
         if user is not None:
             login(request, user)
-            refresh = RefreshToken.for_user(user)  # Generate a refresh token
+            refresh = RefreshToken.for_user(user)
             access_token = refresh.access_token
 
-            response = Response()
-            response.set_cookie(key='jwt', value=str(access_token), httponly=True)
-            response.data = {
+            response_data = {
                 'jwt': str(access_token),
                 'refresh_token': str(refresh)
             }
+            response = Response(response_data)
+            response.set_cookie(key='jwt', value=str(access_token), httponly=True)
             return response
-    # def post(self, request):
+        else:
+            response_data = {'error': 'Invalid credentials'}
+            return Response(response_data, status=status.HTTP_401_UNAUTHORIZED)
     #     username = request.data.get('username')
     #     password = request.data.get('password')
     #

@@ -5,6 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
+
 from .models import Students, Grade, Parents, Operators, Payments, Transfer
 from .serializers import StudentsSerializer, GradeSerializer, ParentsSerializer, OperatorSerializer, PaymentsSerializer, \
     TransferSerializer
@@ -17,8 +18,6 @@ class StudentsListView(generics.ListCreateAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
-
-
 class StudentDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Students.objects.all()
     serializer_class = StudentsSerializer
@@ -26,6 +25,14 @@ class StudentDetailView(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
+    def finalize_response(self, request, response, *args, **kwargs):
+        # Call the parent class's finalize_response method
+        response = super().finalize_response(request, response, *args, **kwargs)
+
+        # Add your custom headers here
+        response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+
+        return response
 
 
 class GradeListView(generics.ListCreateAPIView):
