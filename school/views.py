@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render
+from django.views import View
 from rest_framework import generics
+from rest_framework.generics import ListAPIView, get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
@@ -33,6 +35,19 @@ class StudentDetailView(generics.RetrieveUpdateDestroyAPIView):
         response['Access-Control-Allow-Origin'] = 'http://localhost:3000'
 
         return response
+
+
+class ParentsByStudentView(ListAPIView):
+    serializer_class = ParentsSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        student_id = self.kwargs['student_id']
+        student = get_object_or_404(Students, id=student_id)
+        parents = Parents.objects.filter(children=student)
+        return parents
+
 
 
 class GradeListView(generics.ListCreateAPIView):

@@ -12,14 +12,14 @@ class Parents(models.Model):
     modified = models.DateTimeField(null=True)
 
 
-class Grade(models.Model):
+class Grades(models.Model):
     name = models.CharField(max_length=9)
 
 
 class Students(models.Model):
     first_name = models.CharField(max_length=16, null=False)
     last_name = models.CharField(max_length=32, null=False)
-    grade = models.ForeignKey('Grade', on_delete=models.CASCADE)
+    grade = models.ForeignKey('Grades', on_delete=models.CASCADE)
 
 
 class Transfer(models.Model):

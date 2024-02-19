@@ -26,9 +26,7 @@ SECRET_KEY = 'django-insecure-41=rpkq-ob@8qlv!#_7yup&umhd98*@2nv7=4f7445(wxvy-(4
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'jakub.local',
-    'localhost',
-    '127.0.0.1'
+    '*'
 ]
 
 
@@ -164,5 +162,5 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = [
     'Content-Type',
     'Authorization',
-    'method',  # Include 'method' in the allowed headers
+    'method'
 ]
